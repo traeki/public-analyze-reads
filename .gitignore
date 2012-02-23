@@ -1,0 +1,9 @@
+*.pyc
+*.bak
+output/
+rawdata/
+workspace/
+backup_workspace/
+genomes/
+indexes/
+igv/
