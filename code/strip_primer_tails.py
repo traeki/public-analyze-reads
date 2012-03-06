@@ -28,7 +28,7 @@ def main():
   parser.add_option(
       '--primer', type='string',
       action='store', dest='primer_file',
-      default='genomes/oLSC003.fna',
+      default='models/oLSC003.fna',
       help='File containing the primer to be stripped.')
   parser.add_option(
       '--min_sequence_len', type='int',

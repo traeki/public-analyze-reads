@@ -44,12 +44,12 @@ def main():
   parser.add_option(
       '--trna_index', type='string',
       action='store', dest='trna_index',
-      default='indexes/sc_tRNA_snoRNA',
+      default='models/sc_tRNA_snoRNA',
       help='Path to bowtie index of tRNA to be removed.')
   parser.add_option(
       '--rrna_index', type='string',
       action='store', dest='rrna_index',
-      default='indexes/rrna',
+      default='models/rrna',
       help='Path to bowtie index of rRNA to be removed.')
   (options, args) = parser.parse_args()
 

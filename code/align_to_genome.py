@@ -20,7 +20,7 @@ def main():
   parser.add_option(
       '--genome', type='string',
       action='store', dest='genome',
-      default='indexes/sc_sgd_gff_20091011',
+      default='models/sc_sgd_gff_20091011',
       help='Path to bowtie index of genome against which to align.')
   parser.add_option(
       '--treat_as_mrna',
@@ -35,7 +35,7 @@ def main():
   parser.add_option(
       '--fna_genome', type='string',
       action='store', dest='fna_genome',
-      default='genomes/sc_sgd_gff_20091011.fna',
+      default='models/sc_sgd_gff_20091011.fna',
       help='Path to reference genome (not index) for samtools fillmd.')
   parser.add_option(
       '--tophat_path', type='string',
