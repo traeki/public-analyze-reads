@@ -166,16 +166,16 @@ def process_input_shard(input_shard_name,
   track_writer = TrackFileWriter(normalization_factor,
                                  shard_name,
                                  output_file_base)
-  tally_writer = TallyFileWriter(shard_name,
-                                 output_file_base)
+  # tally_writer = TallyFileWriter(shard_name,
+  #                                output_file_base)
   chrom = None
   for loc, stats in location_stats:
     if loc[0] != chrom:
       chrom = loc[0]
       track_writer.start_chrom(chrom)
-      tally_writer.start_chrom(chrom)
+      # tally_writer.start_chrom(chrom)
     track_writer.write(loc, stats)
-    tally_writer.write(loc, stats)
+    # tally_writer.write(loc, stats)
 
 
 def location_stats_generator(input_shard_name, max_read_len):
@@ -242,8 +242,8 @@ def features_for_alignment(alignment):
   # TODO(jsh): This code needs to account for the cigar gap.
   # TODO(jsh): HTSeq returns the WHOLE alignment interval, so a cigar string
   # TODO(jsh):   like 10M2000N10M gives an interval of width 2020, which is
-  # TODO(jsh):   extremely slow and generates incorrect statistics.  This is
-  # TODO(jsh):   primarily relevant for tophat alignment.
+  # TODO(jsh):   extremely slow and generates incorrect statistics.  (This is
+  # TODO(jsh):   primarily relevant for tophat alignment.)
   features = dict()
   (iv, read, md_string) = correctly_complement_alignment(alignment)
   positions = [(p.chrom, p.strand, p.pos)
@@ -528,6 +528,9 @@ class TrackFileWriter(object):
     self.mapper_to_file_by_direction['-'] = dict()
     for direction in self.mapper_to_file_by_direction:
       for mapper, ext in self.mapper_to_ext.iteritems():
+        if ext != '':
+          # Only output terminal coverage tracks.
+          continue
         fname = self.output_file_base + ext + direction_ext[direction] + '.wig'
         fname += '.shard.' + shard_name
         f = open(fname, 'w')

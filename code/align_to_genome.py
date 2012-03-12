@@ -185,7 +185,7 @@ def align_with_bowtie(input_files,
     tophat_min_anchor_len: Ignored.
     tophat_max_intron_len: Ignored.
     fna_genome: Ignored.
-    output_file_base: Base name for output files and tophat dump directory.
+    output_file_base: Base name for output files.
   Returns:
     output_file: Name of the file to which final alignments are written.
   """
