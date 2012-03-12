@@ -60,13 +60,12 @@ def process_input_files(input_files,
         shard = alignment.iv.chrom
         if shard in ['chrMito', '2-micron']:
           continue
-        if shard_files.has_key(shard):
-          broken = alignment.get_sam_line()
-          fixed = broken.translate(string.maketrans(' ', '\t'))
-          shard_files[shard].write(fixed + '\n')
-        else:
+        if not shard_files.has_key(shard):
           shard_files[shard] = open(
               output_file_base + '.alignment.sam.shard.{0}'.format(shard), 'w')
+        broken = alignment.get_sam_line()
+        fixed = broken.translate(string.maketrans(' ', '\t'))
+        shard_files[shard].write(fixed + '\n')
         total_aligned += 1
   logging.info('total_aligned: {total_aligned}.'.format(**vars()))
   count_file = open(output_file_base + '.alignment.sam.count', 'w')
